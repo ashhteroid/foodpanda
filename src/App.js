@@ -1,11 +1,27 @@
-import React from 'react';
-import { Button } from 'antd';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Layout, Typography } from "antd";
+import "./App.css";
 
-const App = () => (
-  <div className="App">
-    <Button type="primary">Button</Button>
-  </div>
-);
+function App() {
+  const { Header, Footer, Sider, Content } = Layout;
+  const { Text, Link } = Typography;
+  return (
+    <div className="App">
+      <DisplayData />
+    </div>
+  );
+}
+
+function DisplayData() {
+  const [currentTime, setCurrentTime] = useState(0);
+  useEffect(() => {
+    fetch("/api/foods")
+      .then((res) => res.json())
+      .then((data) => {
+        setCurrentTime(data.time);
+      });
+  }, []);
+  return <p>The current time is {currentTime}.</p>;
+}
 
 export default App;
