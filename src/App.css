@@ -1,5 +1,26 @@
 @import '~antd/dist/antd.css';
 
-.App {
-  text-align: center;
+.ant-layout{
+    height: 100%; 
+    text-align:center;  
+  }
+  
+.ant-layout-header{
+/* background: rgb(182, 92, 106); */
+/* text-align: left; */
+/* padding: 80px; */
+}
+
+.ant-layout-content {
+background: rgb(184, 175, 157);
+color: #fff;
+}
+
+.ant-layout-sider {
+background: #3ba0e9;
+color: #fff;
+line-height: 120px;
+}
+.ant-layout-footer {
+
 }

@@ -2,13 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Layout, Typography } from "antd";
 import "./App.css";
 
+
 function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Text, Link } = Typography;
   return (
-    <div className="App">
-      <DisplayData />
-    </div>
+      <Layout className="ant-layout">
+        <Header className="ant-layout-header">
+          <Text mark>Food Selector</Text>
+        </Header>
+        <Content>
+          <DisplayData />
+        </Content>
+      </Layout>
   );
 }
 
