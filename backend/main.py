@@ -78,7 +78,6 @@ class GetFoods(Resource):
         return d
 
 api.add_resource(GetFoods, '/api/foods')
-app = Flask("__main__")
 
 @app.route("/")
 def my_index():
