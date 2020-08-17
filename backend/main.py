@@ -1,9 +1,7 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask import (Flask, render_template)
 import json
-from flask_restful import Resource, Api, reqparse
-
-
+from flask_restful import Api, Resource, reqparse
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 api = Api(app)
@@ -80,20 +78,19 @@ class GetFoods(Resource):
         return d
 
 api.add_resource(GetFoods, '/api/foods')
+app = Flask("__main__")
 
-# @app.route('/api/foods')
-# def get_current_time():
-#     return 'time'
+@app.route("/")
+def my_index():
+    return render_template("index.html")
 
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
     # print (Food.query.all())
 
-    db.drop_all()
-    db.create_all()
-    update_database()
+    # db.drop_all()
+    # db.create_all()
+    # update_database()
     app.debug = True
     app.run()
-
-
