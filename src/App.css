@@ -1,28 +1,35 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
-.ant-layout{
-    background: transparent;
-    height: 100%; 
-    text-align:center;  
+.ant-layout {
+  background: transparent;
+  height: 100%;
+  text-align: center;
+  margin: 5%;
+}
+
+.ant-layout-header {
+  background: transparent;
+  text-align: center;
+  margin: 5%;
+}
+
+.ant-content {
+
+  background: lavender;
+  text-align: left;
+  align-items: center;
+  height: min-content;
+  margin: 20px;
+  padding: 20px;
+  /* background: lightblue; */
+  /* height: min-content; */
+}
+
+.ant-slider {
+    text-align: left;
     margin: 5%;
   }
-  
-.ant-layout-header{
-background: transparent;
-text-align:center;
-margin: 5%;
-}
 
-.ant-layout-content {
-background: rgb(184, 175, 157);
-color: #fff;
-}
-
-.ant-layout-sider {
-background: #3ba0e9;
-color: #fff;
-line-height: 120px;
-}
-.ant-layout-footer {
-
+.App-logo {
+    align-items: center;
 }
