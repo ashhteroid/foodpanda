@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Typography } from "antd";
+import { Layout, Typography, Row, Col } from "antd";
 import "./App.css";
-
+import logo from './logo_foodipedia.png';
 
 function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Text, Link } = Typography;
   return (
-      <Layout className="ant-layout">
-        <Header className="ant-layout-header">
-          <Text mark>Food Selector</Text>
-        </Header>
-        <Content>
-          <DisplayData />
-        </Content>
-      </Layout>
+    <Layout className="ant-layout">
+      <Header className="ant-layout-header">
+        <img src={logo} className="App-logo" alt="logo" />
+      </Header>
+
+      <Content>
+        <Row>
+          <Col span={12}>
+            <DisplayData />
+          </Col>
+          <Col span={12}>
+            <DisplayData />
+          </Col>
+        </Row>
+      </Content>
+    </Layout>
   );
 }
 

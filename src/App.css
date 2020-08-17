@@ -1,14 +1,16 @@
 @import '~antd/dist/antd.css';
 
 .ant-layout{
+    background: transparent;
     height: 100%; 
     text-align:center;  
+    margin: 5%;
   }
   
 .ant-layout-header{
-/* background: rgb(182, 92, 106); */
-/* text-align: left; */
-/* padding: 80px; */
+background: transparent;
+text-align:center;
+margin: 5%;
 }
 
 .ant-layout-content {
