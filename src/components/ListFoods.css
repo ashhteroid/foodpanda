@@ -1,0 +1,11 @@
+.ant-list   {
+
+    background: rgba(245, 245, 245, 0.95);
+    text-align: left;
+    align-items: center;
+    height: min-content;
+    margin: 20px;
+    padding: 20px;
+    /* background: lightblue; */
+    /* height: min-content; */
+  }
