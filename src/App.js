@@ -6,6 +6,7 @@ import NutriSlider from "./components/NutriSlider";
 import ListFoods from "./components/ListFoods";
 import ParticlesBg from "particles-bg";
 
+
 const { Title } = Typography;
 
 function App() {

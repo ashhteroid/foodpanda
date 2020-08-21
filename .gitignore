@@ -12,7 +12,9 @@
 /build
 
 # Backend
-backend/venv*
+/venv
+/backend/venv
+backend/static
 __pycache__
 *.pyc
 
