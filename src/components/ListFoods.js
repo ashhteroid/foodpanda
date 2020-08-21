@@ -3,17 +3,6 @@ import { List, Avatar, Space, Typography } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
 import "./ListFoods.css";
 
-const listData = [];
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: "https://ant.design",
-    title: `ant design part ${i}`,
-    description:
-      "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-    content:
-      "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
-  });
-}
 const IconText = ({ icon, text }) => (
   <Space>
     {React.createElement(icon)}
@@ -23,6 +12,37 @@ const IconText = ({ icon, text }) => (
 
 function ListFoods() {
   const { Title } = Typography;
+  const [foods, setFoods] = useState("");
+  useEffect(() => {
+    fetch("/api/foods?269=0&269=150&204=0&204=150&203=9&203=150&205=0&205=150")
+      .then((res) => res.json())
+      .then((data) => {
+        setFoods(data["_embedded"]);
+      });
+  }, []);
+
+  const listData = [];
+  let i = 0;
+  console.log(foods);
+  for (const food of foods) {
+    if (i === 25) {
+      break;
+    }
+    console.log(food);
+    const nutrientsInfo = food["nutrients"]
+      .map((x) => x["name"] + ": " + x["nutrient_grams_per_100"] + "g")
+      .join(" | ");
+    // console.log(nutrientsInfo);
+    listData.push({
+      title: food.name,
+      avatar:
+        "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+      description: "Nutritional Database Code: " + food.code,
+      content: nutrientsInfo,
+    });
+    i++;
+  }
+
   return (
     <div>
       <List
@@ -69,7 +89,7 @@ function ListFoods() {
             }
           >
             <List.Item.Meta
-              title={<a href={item.href}>{item.title}</a>}
+              title={<b>{item.title}</b>}
               description={item.description}
             />
             {item.content}
@@ -78,6 +98,18 @@ function ListFoods() {
       />
     </div>
   );
+}
+
+function DisplayData() {
+  const [currentTime, setCurrentTime] = useState(0);
+  useEffect(() => {
+    fetch("/api/foods")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
+  return <p>The current time is {currentTime}.</p>;
 }
 
 export default ListFoods;

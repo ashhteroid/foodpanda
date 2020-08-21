@@ -1,1 +1,1 @@
-scp -r -i /Users/Ashwin/Desktop/foodpanda-env.nosync/foodpanda-keypair.pem /Users/Ashwin/Desktop/app.nosync/foodipedia/backend root@foodpanda.us-west-1.elasticbeanstalk.com:/root/backend
+scp -r -i /Users/Ashwin/Desktop/foodpanda-env.nosync/foodpanda-keypair.pem /Users/Ashwin/Desktop/app.nosync/foodipedia/backend/* root@foodpanda.us-west-1.elasticbeanstalk.com:/root/backend/

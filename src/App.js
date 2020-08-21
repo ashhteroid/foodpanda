@@ -28,7 +28,6 @@ function App() {
     <Layout className="ant-layout">
       <Header className="ant-layout-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <DisplayData />
       </Header>
       <Content>
         <Divider>
@@ -44,16 +43,6 @@ function App() {
   );
 }
 
-function DisplayData() {
-  const [currentTime, setCurrentTime] = useState(0);
-  useEffect(() => {
-    fetch("/api/foods")
-      .then((res) => res.json())
-      .then((data) => {
-        setCurrentTime(data.time);
-      });
-  }, []);
-  return <p>The current time is {currentTime}.</p>;
-}
+
 
 export default App;
