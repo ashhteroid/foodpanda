@@ -15,17 +15,20 @@ function App() {
 
   function onNutritionChange() {
     setAnimation("fountain");
+    fetch('/api/foods')
+    .then(res => res.json())
   }
 
   function onFoodChange() {
     setAnimation("cobweb");
   }
+  // {/* <ParticlesBg type={animation} bg={true} /> */}
 
   return (
     <Layout className="ant-layout">
-      <ParticlesBg type={animation} bg={true} />
       <Header className="ant-layout-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <DisplayData />
       </Header>
       <Content>
         <Divider>
