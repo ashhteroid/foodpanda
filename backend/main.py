@@ -117,7 +117,7 @@ class GetFoods(Resource):
 
         for cur_id in supported_nutrients_id:
             parser.add_argument(str(cur_id), type=int,
-                                action='append', default=list())
+                                action='append', default=[0,100])
         input_dict = parser.parse_args()
 
         print(input_dict, "input dict")

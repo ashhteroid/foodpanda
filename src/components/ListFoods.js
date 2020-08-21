@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { List, Avatar, Space, Typography } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
+import axios from 'axios';
 import "./ListFoods.css";
+import { Empty } from 'antd';
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -10,19 +12,27 @@ const IconText = ({ icon, text }) => (
   </Space>
 );
 
-function ListFoods() {
+function ListFoods(props) {
   const { Title } = Typography;
-  const [foods, setFoods] = useState("");
-  useEffect(() => {
-    fetch("/api/foods?269=0&269=150&204=0&204=150&203=9&203=150&205=0&205=150")
-      .then((res) => res.json())
-      .then((data) => {
-        setFoods(data["_embedded"]);
-      });
-  }, []);
+  const [foods, setFoods] = useState([]);
+  useEffect( () => {
+    axios({ method: 'get', url: `/api/foods?269=${props.nutriValue.sugar[0]}
+                                           &269=${props.nutriValue.sugar[1]}
+                                           &204=${props.nutriValue.fat[0]}
+                                           &204=${props.nutriValue.fat[1]}
+                                           &203=${props.nutriValue.protein[0]}
+                                           &203=${props.nutriValue.protein[1]}
+                                           &205=${props.nutriValue.carbohydrate[0]}
+                                           &205=${props.nutriValue.carbohydrate[1]}`})
+    .then(response => {
+      console.log(response.data["_embedded"]);
+      setFoods(response.data["_embedded"]);
+      })
+  }, [props.nutriValue]);
 
   const listData = [];
   let i = 0;
+  console.log(props.nutriValue);
   console.log(foods);
   for (const food of foods) {
     if (i === 25) {
@@ -42,7 +52,7 @@ function ListFoods() {
     });
     i++;
   }
-
+  props.shiftUpFoodChange();
   return (
     <div>
       <List
@@ -55,9 +65,10 @@ function ListFoods() {
           pageSize: 3,
         }}
         dataSource={listData}
+        locale={{emptyText: <Empty description="No food available for those values."/>}}
         footer={
           <div>
-            <b>ant design</b> footer part
+            <b>Disclaimer:</b> The provided information need not be accurate. This website is for demo purpose only.
           </div>
         }
         renderItem={(item) => (

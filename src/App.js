@@ -12,15 +12,19 @@ const { Title } = Typography;
 function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const [animation, setAnimation] = useState("cobweb");
-
-  function onNutritionChange() {
-    setAnimation("fountain");
-    fetch('/api/foods')
-    .then(res => res.json())
+  const defaultValues = { 
+    "fat":[0,100] , "sugar":[0,100], "carbohydrate":[0,100], "protein":[50,100]
   }
-
+  const [nutritionValue, setNutritionValue] = useState(defaultValues);
+  
   function onFoodChange() {
     setAnimation("cobweb");
+  }
+
+  function onSliderChange(values) {
+    setAnimation("fountain");
+    console.log(values)
+    setNutritionValue(values);
   }
   // {/* <ParticlesBg type={animation} bg={true} /> */}
 
@@ -33,11 +37,11 @@ function App() {
         <Divider>
           <Title level={3}>Nutrition</Title>
         </Divider>
-        <NutriSlider onChange={onNutritionChange} />
+        <NutriSlider shiftUpNutritionChange={onSliderChange} defaultSliderValues={defaultValues}/>
         <Divider>
           <Title level={3}>Foods</Title>
         </Divider>
-        <ListFoods onChange={onFoodChange} />
+        <ListFoods shiftUpFoodChange={onFoodChange} nutriValue={nutritionValue} defaultNutriValue={defaultValues}/>
       </Content>
     </Layout>
   );
