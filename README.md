@@ -13,7 +13,10 @@ http://foodpanda.us-west-1.elasticbeanstalk.com/api/foods
 http://foodpanda.us-west-1.elasticbeanstalk.com/api/foods?269=0&269=100&204=0&204=100&203=9&203=100&205=0&205=100
 
 Multiple values are interpretted as range.
-Disclaimer: The provided information need not be accurate. This website is for demo purpose only.
+
+### Disclaimer
+
+The provided information need not be accurate. This website is for demo purpose only.
 
 
 ## Project Scope Considerations:
