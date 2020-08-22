@@ -1,3 +1,41 @@
+# To Visit
+
+Public Website http://foodpanda.us-west-1.elasticbeanstalk.com/
+
+Public API: http://foodpanda.us-west-1.elasticbeanstalk.com/api/foods
+
+API Query Example: http://foodpanda.us-west-1.elasticbeanstalk.com/api/foods?269=0&269=100&204=0&204=100&203=9&203=100&205=0&205=100
+
+Range of value are picked up when multiple values are passed.
+
+Disclaimer: The provided information need not be accurate. This website is for demo purpose only.
+
+
+# Project Scope Considerations:
+
+## In Focus:
+
+### FontEnd
+    1. Clean, pleasing and resonsive React UI based on Ant Design.
+    2. UI background texture and random food icons for high touch feel.
+    3. Slider for intuitive interface.
+    4. PieChart for user feedback.
+    5. Paginated list to display results.
+
+### Backend
+    1. Minimal Flask App to provide routing and API.
+    2. Database in 2NF.
+    3. REST API conforms to HATEOAS.
+
+### Hosting
+    1. Hosted using AWS Elastic Bean stalk.
+    2. Topolgy is somewhat similar to this [topology](https://www.google.com/search?q=elastic+bean+webserver&sxsrf=ALeKk03IeedpR8CSJUZskndj7Te_pddAKg:1598063133577&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiy456L4a3rAhWrGTQIHRoGAxEQ_AUoAnoECA4QBA&biw=2327&bih=1236#imgrc=5p18qBHsLu6kNM).
+
+
+
+
+# Developer 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
