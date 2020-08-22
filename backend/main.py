@@ -66,10 +66,10 @@ def update_database():
     db.session.commit()
 
 
-class GetFoods(Resource):
+class FoodsAPI(Resource):
 
     def __init__(self, *args, **kwargs):
-        super(GetFoods, self).__init__(*args, **kwargs)
+        super(FoodsAPI, self).__init__(*args, **kwargs)
         self.MinMax = namedtuple('MinMax', 'minval maxval')
 
     def _get_min_max_dict(self, passed_values_dict):
@@ -79,16 +79,16 @@ class GetFoods(Resource):
             Returns: Dictionary(Nutriend ID: Min and Max Value)
             ReturnType: {int:MinMax}
         '''
-        min_max_values_dict = {}
+        accepted_range_dict = {}
         for k, v in passed_values_dict.items():
             if not v:
                 continue
-            min_max_values_dict[int(k)] = self.MinMax(min(v),
+            accepted_range_dict[int(k)] = self.MinMax(min(v),
                                                       max(v))
 
-        return min_max_values_dict
+        return accepted_range_dict
 
-    def _add_query_results_to_dict(self, small_result):
+    def _get_hateoas_form(self, small_result):
         result = {}
         for row in small_result:
             food_code, food_name, nutrient_code, nutrient_name, nutrient_grams_per_100 = row
@@ -117,45 +117,32 @@ class GetFoods(Resource):
 
         for cur_id in supported_nutrients_id:
             parser.add_argument(str(cur_id), type=int,
-                                action='append', default=[0,100])
-        input_dict = parser.parse_args()
+                                action='append', default=[0,1000])
 
-        print(input_dict, "input dict")
-        min_max_values_dict = self._get_min_max_dict(parser.parse_args())
-
-        if not min_max_values_dict:
-            print(db.session.query(Nutrient).join(Food, Food.code == Nutrient.food_id).group_by(Food.code)
-                  .values(Food.code, Food.name, Nutrient.code, Nutrient.name, Nutrient.gram))
-
-        print(min_max_values_dict, "min max dict")
-
+        accepted_range_dict = self._get_min_max_dict(parser.parse_args())
         seleted_foods = set([food for food, in db.session.query(Food.code).all()])
-        # print (seleted_foods)
+
         # Select Nutrients based on parameters
-        for cur_nutrient, min_max in min_max_values_dict.items():
+        for cur_nutrient, min_max in accepted_range_dict.items():
             small_result = db.session.query(Nutrient)\
                 .filter(Nutrient.code == cur_nutrient,
-                        Nutrient.gram > min_max.minval,
-                        Nutrient.gram < min_max.maxval)\
+                        Nutrient.gram >= min_max.minval,
+                        Nutrient.gram <= min_max.maxval)\
                 .join(Food, Food.code == Nutrient.food_id)\
                 .values(Food.code)
             # updated foods of interest
             cur_seleted_foods = set([food for food, in small_result])
-            print(cur_seleted_foods)
             seleted_foods = seleted_foods.intersection(cur_seleted_foods)
 
-        seleted_foods = list(seleted_foods)
-        print(seleted_foods, "seleted_foods")
         # Select the foods of interest
         foods = list(db.session.query(Nutrient)
                      .filter(Food.code.in_(seleted_foods))
                      .join(Food, Nutrient.food_id == Food.code)
                      .values(Food.code, Food.name, Nutrient.code, Nutrient.name, Nutrient.gram))
 
-        print(foods, "foods")
-        result_data = self._add_query_results_to_dict(foods)
+        result_data = self._get_hateoas_form(foods)
 
-        result = {
+        result_in_hateoas = {
             "_embedded": result_data,
             "total": len(result_data),
             "_link": {
@@ -164,12 +151,10 @@ class GetFoods(Resource):
                 }
             }
         }
-        print(result)
-        return result
+        return result_in_hateoas
 
 
-api.add_resource(GetFoods, '/api/foods')
-
+api.add_resource(FoodsAPI, '/api/foods')
 
 @app.route("/")
 def my_index():
@@ -179,10 +164,7 @@ def my_index():
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    # print (Food.query.all())
-
     db.drop_all()
     db.create_all()
     update_database()
-    app.debug = True
     app.run(host='0.0.0.0', port=8080)
