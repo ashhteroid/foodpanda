@@ -37,8 +37,13 @@ The provided information need not be accurate. This website is for demo purpose 
 
 Hosted using AWS Elastic Bean stalk. Topolgy is somewhat similar to [this topology diagram](https://www.google.com/search?q=elastic+bean+webserver&sxsrf=ALeKk03IeedpR8CSJUZskndj7Te_pddAKg:1598063133577&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiy456L4a3rAhWrGTQIHRoGAxEQ_AUoAnoECA4QBA&biw=2327&bih=1236#imgrc=5p18qBHsLu6kNM).
 
+### Things left out of scope
 
-
+1. Documentation. 
+2. Testing/Unit Tests.
+3. CI/CD pipiline configurations.
+4. Comments/Formatting/Coding Style enforcement.
+5. Uncommon Edge Cases/Stress Cases.
 
 # Developer 
 
