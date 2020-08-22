@@ -47,6 +47,7 @@ The provided information need not be accurate. This website is for demo purpose 
 3. CI/CD pipiline configurations.
 4. Comments/Formatting/Coding Style enforcement.
 5. Uncommon Edge Cases/Stress Cases.
+6. Security/Authentication/Scaling.
 
 # Developer 
 
