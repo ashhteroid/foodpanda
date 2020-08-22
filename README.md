@@ -34,8 +34,8 @@ The provided information need not be accurate. This website is for demo purpose 
     3. REST API conforms to HATEOAS.
 
 ### Hosting
-    1. Hosted using AWS Elastic Bean stalk.
-    2. Topolgy is somewhat similar to this [topology](https://www.google.com/search?q=elastic+bean+webserver&sxsrf=ALeKk03IeedpR8CSJUZskndj7Te_pddAKg:1598063133577&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiy456L4a3rAhWrGTQIHRoGAxEQ_AUoAnoECA4QBA&biw=2327&bih=1236#imgrc=5p18qBHsLu6kNM).
+
+Hosted using AWS Elastic Bean stalk. Topolgy is somewhat similar to [this topology diagram](https://www.google.com/search?q=elastic+bean+webserver&sxsrf=ALeKk03IeedpR8CSJUZskndj7Te_pddAKg:1598063133577&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiy456L4a3rAhWrGTQIHRoGAxEQ_AUoAnoECA4QBA&biw=2327&bih=1236#imgrc=5p18qBHsLu6kNM).
 
 
 
