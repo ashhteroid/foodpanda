@@ -22,20 +22,23 @@ The provided information need not be accurate. This website is for demo purpose 
 ## Project Scope Considerations:
 
 ### Fontend
-    1. Clean, pleasing and resonsive React UI based on Ant Design.
-    2. UI background texture and random food icons for high touch feel.
-    3. Slider for intuitive interface.
-    4. PieChart for user feedback.
-    5. Paginated list to display results.
+
+1. Clean, pleasing and resonsive React UI based on Ant Design.
+2. UI background texture and random food icons for high touch feel.
+3. Slider for intuitive interface.
+4. PieChart for user feedback.
+5. Paginated list to display results.
 
 ### Backend
-    1. Minimal Flask App to provide routing and API.
-    2. Database in 2NF.
-    3. REST API conforms to HATEOAS.
+
+1. Minimal Flask App to provide routing and API.
+2. Database in 2NF.
+3. REST API conforms to HATEOAS.
 
 ### Hosting
 
-Hosted using AWS Elastic Bean stalk. Topolgy is somewhat similar to [this topology diagram](https://www.google.com/search?q=elastic+bean+webserver&sxsrf=ALeKk03IeedpR8CSJUZskndj7Te_pddAKg:1598063133577&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiy456L4a3rAhWrGTQIHRoGAxEQ_AUoAnoECA4QBA&biw=2327&bih=1236#imgrc=5p18qBHsLu6kNM).
+1. Hosted using AWS Elastic Bean stalk.
+2. Topolgy is somewhat similar to [this topology diagram](https://www.google.com/search?q=elastic+bean+webserver&sxsrf=ALeKk03IeedpR8CSJUZskndj7Te_pddAKg:1598063133577&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiy456L4a3rAhWrGTQIHRoGAxEQ_AUoAnoECA4QBA&biw=2327&bih=1236#imgrc=5p18qBHsLu6kNM).
 
 ### Things left out of scope
 
