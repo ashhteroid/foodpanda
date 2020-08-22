@@ -1,19 +1,22 @@
-# To Visit
+# Food Panda Website
 
-Public Website http://foodpanda.us-west-1.elasticbeanstalk.com/
+### Public Website
 
-Public API: http://foodpanda.us-west-1.elasticbeanstalk.com/api/foods
+http://foodpanda.us-west-1.elasticbeanstalk.com/
 
-API Query Example: http://foodpanda.us-west-1.elasticbeanstalk.com/api/foods?269=0&269=100&204=0&204=100&203=9&203=100&205=0&205=100
+### Public API
 
-Range of value are picked up when multiple values are passed.
+http://foodpanda.us-west-1.elasticbeanstalk.com/api/foods
 
+### API Query Example
+
+http://foodpanda.us-west-1.elasticbeanstalk.com/api/foods?269=0&269=100&204=0&204=100&203=9&203=100&205=0&205=100
+
+Multiple values are interpretted as range.
 Disclaimer: The provided information need not be accurate. This website is for demo purpose only.
 
 
-# Project Scope Considerations:
-
-## In Focus:
+## Project Scope Considerations:
 
 ### FontEnd
     1. Clean, pleasing and resonsive React UI based on Ant Design.
