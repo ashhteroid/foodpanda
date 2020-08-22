@@ -2,7 +2,7 @@
 
 ### Public Website
 
-http://foodpanda.us-west-1.elasticbeanstalk.com/
+http://foodpanda.us-west-1.elasticbeanstalk.com
 
 ### Public API
 
