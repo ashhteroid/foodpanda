@@ -13,29 +13,31 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const [animation, setAnimation] = useState("cobweb");
   const defaultValues = { 
-    "fat":[0,100] , "sugar":[0,100], "carbohydrate":[0,100], "protein":[50,100]
+    "fat":[0,60] , "sugar":[0,300], "carbohydrate":[0,200], "protein":[0,60]
   }
   const [nutritionValue, setNutritionValue] = useState(defaultValues);
   
   function onFoodChange() {
-    setAnimation("cobweb");
+    // setAnimation("cobweb");
   }
 
   function onSliderChange(values) {
     setAnimation("fountain");
     console.log(values)
     setNutritionValue(values);
+    setTimeout(()=>setAnimation("cobweb"), 3000);
   }
   // {/* <ParticlesBg type={animation} bg={true} /> */}
 
   return (
     <Layout className="ant-layout">
+      <ParticlesBg type={animation} bg={true} />
       <Header className="ant-layout-header">
         <img src={logo} className="App-logo" alt="logo" />
       </Header>
       <Content>
         <Divider>
-          <Title level={3}>Nutrition</Title>
+          <Title level={3}>Nutrients(g)</Title>
         </Divider>
         <NutriSlider shiftUpNutritionChange={onSliderChange} defaultSliderValues={defaultValues}/>
         <Divider>

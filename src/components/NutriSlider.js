@@ -11,17 +11,15 @@ function NutriSlider(props) {
   const [sugar, setSugar] = useState(props.defaultSliderValues.sugar);
   const [protein, setProtein] = useState(props.defaultSliderValues.protein);
   const [fat, setFat] = useState(props.defaultSliderValues.fat);
-
+  const maxval = 300;
   function formatter(value) {
     return `${value}`;
   }
 
   function onAfterChange() {
-    const values = {
+    props.shiftUpNutritionChange({ 
       "fat":fat , "sugar":sugar, "carbohydrate":carbohydrate, "protein":protein
-    }
-    console.log(values);
-    props.shiftUpNutritionChange(values);
+    });
   }
   return (
     <Row className="ant-content">
@@ -30,6 +28,7 @@ function NutriSlider(props) {
         <Slider
           range
           step={1}
+          max={maxval}
           defaultValue={carbohydrate}
           tipFormatter={formatter, formatter}
           onChange={setCarbohydrate}
@@ -39,6 +38,7 @@ function NutriSlider(props) {
         <Slider
           range
           step={1}
+          max={maxval}
           defaultValue={sugar}
           // tipFormatter={formatter, formatter}
           onChange={setSugar}
@@ -48,6 +48,7 @@ function NutriSlider(props) {
         <Slider
           range
           step={1}
+          max={maxval}
           defaultValue={protein}
           tipFormatter={formatter, formatter}
           onChange={setProtein}
@@ -57,6 +58,7 @@ function NutriSlider(props) {
         <Slider
           range
           step={1}
+          max={maxval}
           defaultValue={fat}
           tipFormatter={formatter, formatter}
           onChange={setFat}
@@ -64,7 +66,7 @@ function NutriSlider(props) {
         />
       </Col>
       <Col span={12}>
-        <PieChart />
+        <PieChart valuesForPie={{"fat":fat , "sugar":sugar, "carbohydrate":carbohydrate, "protein":protein}} />
       </Col>
     </Row>
   );

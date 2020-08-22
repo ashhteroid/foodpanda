@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Chart from "react-google-charts";
 
 function PieChart(prop) {
+    const otherval = 100 - (prop.valuesForPie.carbohydrate[1] - prop.valuesForPie.fat[1]
+                            - prop.valuesForPie.protein[1] - prop.valuesForPie.sugar[1]);
     const pieOptions = {
       title: "",
       pieHole: 0.6,
@@ -17,7 +19,10 @@ function PieChart(prop) {
         },
         {
           color: "#e9a227"
-        }
+        },
+        // {
+        //   color: "#A9A9A9"
+        // }
       ],
       legend: {
         position: "bottom",
@@ -32,7 +37,7 @@ function PieChart(prop) {
       },
       chartArea: {
         left: 0,
-        top: 0,
+        top: 10,
         width: "100%",
         height: "80%",
       },
@@ -43,11 +48,12 @@ function PieChart(prop) {
       <Chart
         chartType="PieChart"
         data={[
-          ["Sugar", "Carbohydrate", "Fat", "Protein"],
-          ["Carbohydrate", 10, 0, 0],
-          ["Sugar", 14, 0, 0],
-          ["Protein", 12, 0, 0],
-          ["Fat", 5.5, 0, 0],
+          ["Sugar", "Percentage"],
+          ["Carbohydrate", prop.valuesForPie.carbohydrate[1]],
+          ["Sugar", prop.valuesForPie.sugar[1]],
+          ["Protein", prop.valuesForPie.protein[1]],
+          ["Fat", prop.valuesForPie.fat[1]],
+          // ["Other", otherval],
         ]}
         options={pieOptions}
         graph_id="PieChart"

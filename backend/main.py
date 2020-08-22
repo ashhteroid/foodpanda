@@ -28,13 +28,13 @@ class Nutrient(db.Model):
     name = db.Column(db.String(80), nullable=False)
     unit = db.Column(db.String(80), nullable=False)
     value_per_unit = db.Column(db.String(80))
-    grams_per_100 = db.Column(db.Integer)
+    gram = db.Column(db.Integer)
     food_id = db.Column(db.Integer, db.ForeignKey(
         'food.code'), primary_key=True)
     food = db.relationship('Food', backref=db.backref('nutrient', lazy=True))
 
     def __repr__(self):
-        return ('Nutrient ' + self.name + '| grams_per_100 ' + str(self.grams_per_100))
+        return ('Nutrient ' + self.name + '| gram ' + str(self.gram))
 
 
 def update_database():
@@ -47,19 +47,19 @@ def update_database():
             current_nutrient_id = int(nutrient["nutrient_id"])
             if current_nutrient_id in [203, 204, 205, 269]:
                 if nutrient["gm"] == '--':
-                    current_grams_per_100 = 0
+                    current_gram = 0
                 else:
-                    current_grams_per_100 = int(nutrient["gm"])
+                    current_gram = int(nutrient["gm"])
                 food_row = Food(code=int(food["ndbno"]),
                                 name=food["name"],
-                                weight=int(food["weight"]),
+                                weight=round(int(food["weight"]), 1),
                                 measure=food["measure"])
 
                 nutrient_row = Nutrient(code=current_nutrient_id,
                                         name=nutrient["nutrient"],
                                         unit=nutrient["unit"],
                                         value_per_unit=nutrient["value"],
-                                        grams_per_100=current_grams_per_100,
+                                        gram=current_gram,
                                         food_id=int(food["ndbno"]))
                 db.session.add(nutrient_row)
         db.session.add(food_row)
@@ -125,7 +125,7 @@ class GetFoods(Resource):
 
         if not min_max_values_dict:
             print(db.session.query(Nutrient).join(Food, Food.code == Nutrient.food_id).group_by(Food.code)
-                  .values(Food.code, Food.name, Nutrient.code, Nutrient.name, Nutrient.grams_per_100))
+                  .values(Food.code, Food.name, Nutrient.code, Nutrient.name, Nutrient.gram))
 
         print(min_max_values_dict, "min max dict")
 
@@ -135,8 +135,8 @@ class GetFoods(Resource):
         for cur_nutrient, min_max in min_max_values_dict.items():
             small_result = db.session.query(Nutrient)\
                 .filter(Nutrient.code == cur_nutrient,
-                        Nutrient.grams_per_100 > min_max.minval,
-                        Nutrient.grams_per_100 < min_max.maxval)\
+                        Nutrient.gram > min_max.minval,
+                        Nutrient.gram < min_max.maxval)\
                 .join(Food, Food.code == Nutrient.food_id)\
                 .values(Food.code)
             # updated foods of interest
@@ -150,7 +150,7 @@ class GetFoods(Resource):
         foods = list(db.session.query(Nutrient)
                      .filter(Food.code.in_(seleted_foods))
                      .join(Food, Nutrient.food_id == Food.code)
-                     .values(Food.code, Food.name, Nutrient.code, Nutrient.name, Nutrient.grams_per_100))
+                     .values(Food.code, Food.name, Nutrient.code, Nutrient.name, Nutrient.gram))
 
         print(foods, "foods")
         result_data = self._add_query_results_to_dict(foods)
