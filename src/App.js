@@ -23,11 +23,9 @@ function App() {
 
   function onSliderChange(values) {
     setAnimation("fountain");
-    console.log(values)
     setNutritionValue(values);
     setTimeout(()=>setAnimation("cobweb"), 3000);
   }
-  // {/* <ParticlesBg type={animation} bg={true} /> */}
 
   return (
     <Layout className="ant-layout">

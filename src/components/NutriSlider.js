@@ -3,8 +3,6 @@ import { Layout, Typography, Row, Col, Slider } from "antd";
 import PieChart from "./PieChart";
 import "./NutriSlider.css";
 
-
-
 function NutriSlider(props) {
   const { Title } = Typography;
   const [carbohydrate, setCarbohydrate] = useState(props.defaultSliderValues.carbohydrate);
