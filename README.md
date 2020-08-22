@@ -21,7 +21,7 @@ The provided information need not be accurate. This website is for demo purpose 
 
 ## Project Scope Considerations:
 
-### FontEnd
+### Fontend
     1. Clean, pleasing and resonsive React UI based on Ant Design.
     2. UI background texture and random food icons for high touch feel.
     3. Slider for intuitive interface.
